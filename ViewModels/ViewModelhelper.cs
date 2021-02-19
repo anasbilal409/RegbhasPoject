@@ -24,7 +24,7 @@ namespace Regbhas.ViewModels
         {
             ProjectViewModel model = new ProjectViewModel();
             model.Id = entity.Id;
-            model.Projectname = entity.Projectname;
+            model.Name = entity.Name;
             model.Pdetail = entity.Pdetail;
 
 
@@ -39,7 +39,7 @@ namespace Regbhas.ViewModels
         }
         public static Project ToEntity(this ProjectViewModel model)
         {
-            return new Project { Id = model.Id, Projectname = model.Projectname  };
+            return new Project { Id = model.Id, Name = model.Name  };
         }
 
         public static List<ProjectViewModel> ToModelsList(this List<Project> entitiesList)
