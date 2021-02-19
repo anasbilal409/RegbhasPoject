@@ -8,14 +8,18 @@ namespace Regbhas.Models.UserMgt
 {
     public class UsersHandler
     {
-        public List<Userregistration> GetUsers()
+        public Userregistration GetUser(string loginid, string password)
         {
             using (Database context = new Database())
             {
                 return (from u in context.UserRegistration
                         .Include("Role")
-                        select u).ToList();
+
+                        where u.LoginId.Equals(loginid) && u.Password.Equals(password)
+                        select u).FirstOrDefault();
             }
         }
+
+       
     }
 }
