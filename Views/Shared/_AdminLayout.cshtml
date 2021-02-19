@@ -1,5 +1,6 @@
 ﻿@{
-    //UserRegistrationVM currentUser = Context.Session.Get<UserRegistrationVM>(WebUtil.CURRENT_USER);
+    UserregistrationVM currentUser = Context.Session.Get<UserregistrationVM>(WebUtil.CURRENT_USER);
+    
 }
 
 
@@ -9,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HomeDecor</title>
+    <title>@ViewData["Title"] - Regbhas</title>
 
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -47,7 +48,7 @@
             </ul>
 
             <ul class="navbar-nav my-2 my-lg-0">
-                @if @*(currentUser*@ == null)
+                @if(currentUser == null)
                 {
                     <li class="nav-item">
                         <a class="nav-link" asp-action="login" asp-controller="users"> <i class="fa fa-sign-in"></i> Login </a>
@@ -80,7 +81,7 @@
     </nav>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            @*<span><strong> @currentUser.Name</strong>, You are a <strong>@currentUser.Role.Name</strong> here!!</span>*@
+            <span><strong> @currentUser.Name</strong>, You are a <strong>@currentUser.Role.Name</strong> here!!</span>
         </a>
     </nav>
     <main>
@@ -92,23 +93,11 @@
                         <center><h2 class="lead"><i class="fa fa-user"></i> Profile </h2></center>
                         <ul class="list-group">
                             <li class="list-group-item">
-                               @*<p class="lead">Full Name:</p>@currentUser.Name*@
+                               <p class="lead">Full Name:</p>@currentUser.Name
                             </li>
+                           
                             <li class="list-group-item">
-
-                                <div class="text-center">
-                                    @*@if (string.IsNullOrWhiteSpace(currentUser.Image))*@
-                                    {
-                                        <img src="~/images/others/user.png" alt="none_user" class="rounded-circle w-50" />
-                                    }
-                                    else
-                                    {
-                                        @*<img src="data:images/jpg;base64,@currentUser.Image" alt="hassan" class="rounded-circle w-50" />*@
-                                    }
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                @*<p class="lead">Login ID:</p>@currentUser.LoginId*@
+                                <p class="lead">Login ID:</p>@currentUser.LoginId
                             </li>
 
                            
