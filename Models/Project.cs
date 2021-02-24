@@ -19,6 +19,8 @@ namespace Regbhas.Models
 
         public string Pdetail { get; set; }
 
+
+
         [Required]
         public virtual ProjectCategory Category { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,6 +12,8 @@ namespace Regbhas.Models
     {
         public int Id { get; set; }
 
+       
+
         [Column(TypeName = "varchar(100)")]
         public string Caption { get; set; }
 
@@ -18,6 +21,10 @@ namespace Regbhas.Models
         [Column(TypeName = "image")]
         public byte[] Content { get; set; }
 
+
+
         public int Rank { get; set; }
+
+      
     }
 }

@@ -37,11 +37,17 @@ namespace Regbhas.Models
                 .WithOne()
                 .OnDelete(DeleteBehavior.Cascade);
 
-           
+
+
+            modelBuilder.Entity<Project>()
+                .HasOne<ProjectCategory>(a => a.Category).WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
 
             
 
-            
+
+
+
 
             //modelBuilder.Entity<Advertizement>()
             //    .HasOne<User>(a => a.PostedBy)
@@ -56,7 +62,9 @@ namespace Regbhas.Models
         public DbSet<Userregistration> UserRegistration { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Project> Project { get; set; }
-      
+        public DbSet<ProjectCategory> ProjectCategory { get; set; }
+        public DbSet<Imgtype> ImgTypes { get; set; }
+
     }
 
 }
