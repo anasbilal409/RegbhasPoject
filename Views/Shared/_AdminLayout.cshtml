@@ -3,27 +3,52 @@
     
 }
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Regbhas</title>
-
-    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-
-
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
     <link href="~/css/main.css" rel="stylesheet" />
-
+    
 
     @RenderSection("mycss", false)
+    <style>
+        .sidenav {
+            margin-top:18vh;
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ecf3f3;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+            .sidenav a {
+                margin-left:5vh;
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 16px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidenav a:hover {
+                    color: #13b1e5;
+                }
+
+
+    </style>
 
 </head>
 <body>
+
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <i class="fas fa-home"></i>  Regbhas
@@ -33,80 +58,43 @@
             <i class="fa fa-arrow-circle-down"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="mainmenu">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" asp-action="AdminIndex" asp-controller="Admin"> <i class="fa fa-home"></i> Home </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" asp-action="Manage" asp-controller="User"> <i class="fa fa-eye"></i> View Registered Users </a>
 
-                </li>
-                
-
-
-            </ul>
-
-            <ul class="navbar-nav my-2 my-lg-0">
-                @if(currentUser == null)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="login" asp-controller="users"> <i class="fa fa-sign-in"></i> Login </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Logout" asp-controller="users"> <i class="fa fa-user"></i> Sign Up </a>
-                    </li>
-                }
-                else
-                {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user"></i> @currentUser.Name </a>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-item">
-                                <div class="">
-                                    <img src="images/others/ali.jpg" class="w-100" alt="ali" />
-                                </div>
-                            </div>
-                            <a class="dropdown-item" href="#"><i class="fa fa-user"></i>  Profile </a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-key"></i>  Change Password </a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-action="Logout" asp-controller="Admin"> <i class="fa fa-sign-out"></i> Sign Out </a>
-                    </li>
-                }
-
-            </ul>
-        </div>
     </nav>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <span><strong> @currentUser.Name</strong>, You are a <strong>@currentUser.Role.Name</strong> here!!</span>
         </a>
     </nav>
+
     <main>
+
         <div class="container-fluid">
             <div class="mt-3">
                 <div class="row">
 
                     <section class="d-none d-md-block  col-md-3 col-lg-3 col-xl-3">
-                        <center><h2 class="lead"><i class="fa fa-user"></i> Profile </h2></center>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                               <p class="lead">Full Name:</p>@currentUser.Name
-                            </li>
-                           
-                            <li class="list-group-item">
-                                <p class="lead">Login ID:</p>@currentUser.LoginId
-                            </li>
-
-                           
-                         
-                         
+                        <div class="sidenav">
 
 
 
-                        </ul>
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                <li class="nav-item active">
+                                    <a class="nav-link active" asp-action="manage" asp-controller="project"> <i class="fa fa-cog"></i> Manage Projects </a>
+                                </li>
+                                
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="manage" asp-controller="Category"> <i class="fa fa-plus"></i> Manage Category </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Logout" asp-controller="Admin"> <i class="fa fa-sign-out-alt"></i>  Sign Out </a>
+                                </li>
+                            </ul>
+
+
+
+                        </div>
+
                     </section>
                     <section class="col-12 col-sm-12  col-md-9 col-lg-9 col-xl-9">
                         @RenderBody()
@@ -115,10 +103,9 @@
             </div>
         </div>
     </main>
-
-    <script src="~/lib/jquery/jquery-3.4.1.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    @RenderSection("myscript", false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("adminscript", false)
 </body>
 
 </html>

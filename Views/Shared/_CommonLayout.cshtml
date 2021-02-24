@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Layout</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HomeDecor</title>
+
+
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
+
+
+
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/abtstyle.css" rel="stylesheet" />
+
+    @RenderSection("mycss", false)
+</head>
+<body style="background-color:white">
+    <header>
+
+    </header>
+
+    <main>
+        <div class="container-fluid">
+            <div class="mt-3">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+
+    <script src="~/lib/jquery/jquery-3.4.1.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("MainScripts", false)
+</body>
+</html>

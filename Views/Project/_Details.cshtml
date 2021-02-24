@@ -1,0 +1,60 @@
+﻿
+@model ProjectViewModel
+
+<section class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="lead" style="margin-bottom:15px;">
+                <h2 class="lead"> @Model.Name </h2>  
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <div style="margin-bottom:15px">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <div class="lead">Product Category: <strong>@Model.Category.Name</strong></div>
+                           
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <label class="lead">Project Description</label>
+                        <div class="lead"> <strong>@Model.Pdetail</strong></div>
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="col-7">
+            <div class="row">
+                <div class="col-4">
+                    <img src="data:image/jpg;base64,@Model.Images[0]" alt="@Model.Name" class="w-100" />
+                </div>
+               
+            </div>
+            <div style="margin-top:15px;">
+                <div class="row">
+                    @foreach (var img in Model.Images)
+                    {
+                        <div class="col-3"><img src="data:image/jpg;base64,@img" alt="@Model.Name" class="w-100" /></div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+</section>
+
+
+
+
+

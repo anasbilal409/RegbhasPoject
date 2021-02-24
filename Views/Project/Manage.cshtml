@@ -1,0 +1,292 @@
+﻿@model IEnumerable<ProjectViewModel>
+
+@{
+    ViewData["Title"] = "Manage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="modal fade" id="mydialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 id="mydialog-title" class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div id="mydialog-body" class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<center><h3 class="lead">Manage Projects</h3></center>
+<section class="container-fluid">
+    <div class="caption-row bg-primary text-white">
+        <div class="row">
+            <div class="col-12">
+                <span>Manage Projects</span>
+                <span>
+                    [ <a id="postadvlink" asp-action="postproject" asp-controller="project" class="text-white">  Add New </a> ]
+                </span>
+            </div>
+        </div>
+    </div>
+    <table class="table table-striped table-inverse table-responsive" width="100%">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Project Name</th>
+                <th>Project Details</th>
+                <th>Project Category</th>
+                <th>Images</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td scope="row">@m.Name</td>
+                    <td>@m.Pdetail</td>
+                    <td>@m.Category.Name</td>
+
+                    @*<td><img src="data:image/jpg;base64,@m.Images.First()" class="rounded-circle" height="50" width="50" asp-append-version="true" /></td>*@
+
+                    <td>
+                        @* <a class="btn btn-warning dgbtn-edit" asp-action="Updateproduct" asp-controller="Products" asp-route-id="@m.Id"><i class="fa fa-edit"></i> </a>*@
+                        <a class="btn btn-danger dgbtn-delete" asp-action="Delete" asp-controller="Products" asp-route-id="@m.Id"><i class="fa fa-trash"></i> </a>
+                    </td>
+                </tr>
+
+
+            }
+
+
+        </tbody>
+    </table>
+
+
+</section>
+
+@section adminscript{
+    <script>
+        //AJAX
+        //$.get("url", function (result) { //some code to use result })
+        //$.post("url", null, function (result) { //some code to use result })
+        //$.getJSON("url", function (result) { //some code to use result })
+        //$("#div1").load("url");
+        //$.ajax(
+        //    {
+        //          url: "/countries/manage"
+        //        type: "get",
+        //        //data: null,
+        //        //contentType: "application/json",
+        //    }
+        //).done(function (result) {
+        //    //some code to use resul
+        //});
+        $("#postadvlink").click(function (event) {
+            event.preventDefault();
+            let myurl = $(this).attr("href");
+            $.ajax(
+                {
+                    url: myurl
+                }
+            ).done(function (createform) {
+                $("#mydialog-title").html("Add New Project");
+                $("#mydialog-body").html(createform);
+                $("#mydialog").modal();
+                $("#lnkdemo").click(function (e) {
+                    e.preventDefault();
+                    let temp = $(this).attr("href");
+                    $.ajax(
+                        {
+                            url: myurl
+                        }
+                    ).done(function (result) {
+                        alert(result);
+                    });
+
+                })
+                //$("#div1").html(createform);
+            });
+        });
+
+
+
+
+
+
+    </script>
+
+
+    <script>
+        $("#postadvlink").click(function (event) {
+            event.preventDefault();
+            let postadvurl = $(this).attr("href");
+            $.ajax(
+                {
+                    url: postadvurl
+                }
+            ).done(function (postadvform) {
+                $("#advdialog-body").html(postadvform);
+                $("#advdialog").modal();
+
+                //on countries change
+                //$("#countriesddl").change(function () {
+                //    let countryId = $(this).val();
+                //    if (countryId > 0) {
+                //        $.ajax(
+                //            {
+                //                url: "/countries/citiesddl/" + countryId
+                //            }
+                //        ).done(function (citiesddlresult) {
+                //            $("#div4cities").html(citiesddlresult);
+                //        });
+                //    }
+                //});
+
+                //on categories cahnge
+                $("#categoriesddl").change(function () {
+                    let categoryId = $(this).val();
+                    if (categoryId > 0) {
+                        $.ajax(
+                            {
+                                url: "/categories/SubCategoriesDDL/" + categoryId
+                            }
+                        ).done(function (subcategoriesddlresult) {
+                            $("#div4subcategories").html(subcategoriesddlresult);
+                        });
+                    }
+                });
+                /////
+
+
+
+                //on click of add button for images
+                $("#btnphadd").click(function () {
+                    let temp = "<tr class='dgph-row d-flex'>"
+                        + "<td class='col-4' ><select id='aa' name='phcaption' type='text' class='form-control'><option value='Before'>Before</option><option value='After'>After</option></select></td>"
+                        + "<td class='col-5' ><input name='phfile' type='file' /></td>"
+                        + "<td class='col-3' >"
+                        + "<button type='button' class='btn btn-danger btn-sm dgph-btndelete'><i class='fa fa-trash'></i></button>"
+                        + "</td>"
+                        + "</tr>";
+                    $("#phtablbody").append(temp);
+                    $(".dgph-btndelete").click(function () {
+                        $(this).parents(".dgph-row").remove();
+                    });
+                });
+            });
+        });
+    </script>
+
+
+    <script>
+
+
+        $(".dgbtn-edit").click(function (event) {
+            event.preventDefault();
+            alert("Edit form to be displayed Here")
+            let myurl = $(this).attr("href");
+            $.ajax(
+                {
+                    url: myurl
+                }
+            ).done(function (editform) {
+                $("#mydialog-title").html("Edit Product");
+                $("#mydialog-body").html(editform);
+                $("#mydialog").modal();
+                $("#lnkdemo").click(function (e) {
+                    e.preventDefault();
+                    let temp = $(this).attr("href");
+                    $.ajax(
+                        {
+                            url: myurl
+                        }
+                    ).done(function (result) {
+                        alert(result);
+                    });
+
+                })
+                //$("#div1").html(createform);
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(".dgbtn-delete").click(function (event) {
+            event.preventDefault();
+            let myurl = $(this).attr("href");
+            $.ajax(
+                {
+                    url: myurl
+                }
+            ).done(function (deleteform) {
+                $("#mydialog-title").html("Do you want to delete this record?");
+                $("#mydialog-body").html(deleteform);
+                $("#mydialog").modal();
+                $("#btnno").modal("hide");
+            });
+        });
+    </script>
+
+
+    <script>
+        $("#dgbtn-Edit").click(function (event) {
+            event.preventDefault();
+            let postadvurl = $(this).attr("href");
+            $.ajax(
+                {
+                    url: postadvurl
+                }
+            ).done(function (postadvform) {
+                $("#advdialog-body").html(postadvform);
+                $("#advdialog").modal();
+
+               
+
+                //on categories cahnge
+                $("#categoriesddl").change(function () {
+                    let categoryId = $(this).val();
+                    if (categoryId > 0) {
+                        $.ajax(
+                            {
+                                url: "/categories/SubCategoriesDDL/" + categoryId
+                            }
+                        ).done(function (subcategoriesddlresult) {
+                            $("#div4subcategories").html(subcategoriesddlresult);
+                        });
+                    }
+                });
+                /////
+
+
+
+                //on click of add button for images
+                $("#btnphadd").click(function () {
+                    let temp = "<tr class='dgph-row d-flex'>"
+                        + "<td class='col-4' ><input name='phcaption' type='text' class='form-control' /></td>"
+                        + "<td class='col-5' ><input name='phfile' type='file' /></td>"
+                        + "<td class='col-3' >"
+                        + "<button type='button' class='btn btn-danger btn-sm dgph-btndelete'><i class='fa fa-trash'></i></button>"
+                        + "</td>"
+                        + "</tr>";
+                    $("#phtablbody").append(temp);
+                    $(".dgph-btndelete").click(function () {
+                        $(this).parents(".dgph-row").remove();
+                    });
+                });
+            });
+        });
+    </script>
+
+}

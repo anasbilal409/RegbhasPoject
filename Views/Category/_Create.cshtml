@@ -1,0 +1,36 @@
+﻿@model ProjectCategoryVM
+
+
+<form id="postadvform" asp-action="create" asp-controller="category" method="post" enctype="multipart/form-data">
+    <ul class="nav nav-tabs">
+        <li class="nav-item"> <a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
+    </ul>
+
+    <div class="tab-content"   style="min-height:360px"> 
+        <div id="general" class="tab-pane active mytab-pane">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                        <label class="input-group-text"><i class="fa fa-edit"></i></label>
+                    </span>
+                    <input type="text" class="form-control" asp-for="Name" placeholder="Enter Category Name" />
+                </div>
+            </div>
+            </div>
+
+ </div>
+       
+      
+
+
+   
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-arrow-circle-right"></i>  Add Category
+        </button>
+    </div>
+</form>
+
+
+

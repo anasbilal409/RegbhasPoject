@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="row bg-light justify-content-center">
+            <div class="col-lg-12">
+                <div class="info-wrap">
+                    <div class="row ">
+                        <div class="col-lg-4 info bg-light">
+                            <i class="fa fa-map-marker"></i>
+                            <h4>Location:</h4>
+                            <p>
+                                KOT Lakhpat Lahore, Opposite Eden Center, Jail Road, Lahore
+                            </p>
+                        </div>
+                        <div class="col-lg-4 bg-light info mt-4 mt-lg-0">
+                            <i class="fa fa-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>mmustafa@gmail.com</p>
+                        </div>
+                        <div class="col-lg-4 bg-light info mt-4 mt-lg-0">
+                            <i class="fa fa-phone"></i>
+                            <h4>Call:</h4>
+                            <p>
+                                924237429047
+                                924237429048 <br />
+                                924237429049
+                                924237429050
+                            </p>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-lg-6">
+                <div class="card shadow">
+                    <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d13612.885770287829!2d74.32154817237027!3d31.4630941052051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x391906a3c42292d5%3A0xd414eff2f9ffbb19!2sKot%20Lakhpat%2C%20Lahore%2C%20Punjab%2C%20Pakistan!3m2!1d31.462606599999997!2d74.3308864!5e0!3m2!1sen!2s!4v1614197121280!5m2!1sen!2s" frameborder="0" style="border:0; width: 100%; height: 550px;" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card shadow">
+                    <div class="alert alert-success alert-dismissible fade show d-none" id="contactusmessage" role="alert">
+                        <strong>Success!</strong> Thanks!!! For Your Feedback We Will Contact You Soon...
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="contact_us_form" class="counter_form_content d-flex flex-column align-items-center justify-content-center" method="post">
+                        <div class="counter_form_title p-2">Contact US</div>
+                        <input type="text" id="firstname" name="firstname" class="counter_input" placeholder="First Name:" required="required">
+                        <input type="text" id="lastname" name="lastname" class="counter_input" placeholder="Last Name:" required="required">
+                        <input type="tel" id="phonenumber" name="phonenumber" maxlength="12" class="counter_input" placeholder="Phone:" required="required">
+                        <input type="email" id="email" name="email" class="counter_input" placeholder="Email:" required="required">
+                        <textarea id="message" name="message" class="counter_input counter_text_input" placeholder="Message:" required="required"></textarea>
+                        <button type="submit" class="counter_form_button">
+                            <span class="spinner-border spinner-border-sm d-none" id="contactloader" role="status" aria-hidden="true"></span>
+                            submit now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+
+}

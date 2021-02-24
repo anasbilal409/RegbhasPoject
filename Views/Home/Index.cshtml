@@ -1,8 +1,111 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<ProjectViewModel> topAdvs = (List<ProjectViewModel>)ViewData["TopAdvs"];
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="main">
+    <h1>Our Projects</h1>
+
+    <ul class="cards">
+        @foreach (var adv in topAdvs)
+        {
+            <li class="cards_item">
+                <div class="card">
+                    <div class="card_image">
+                        @if (adv.Images.Count > 0)
+                        {
+                            <img src="data:image/jpg;base64,@adv.Images.First()" class="card-img card-img-top" alt="adv" />
+                        }
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@adv.Name</h5>
+                        <div style="background-color:aliceblue"></div>
+                    </div>
+                    <div class="card_content">
+                        <h2 class="card_title">@adv.Name</h2>
+                        <p class="card_text">@adv.Category.Name</p>
+                        
+                            <a asp-action="Details" asp-controller="Project" asp-route-id="@adv.Id" class="lnk-advdetails btn card_btn" title="@adv.Name">  <i class="fa fa-info-circle fa-2x"></i>  <h6>View Details</h6>  </a>
+                        
+                        
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
 </div>
+
+
+
+
+<div class="lead" style="margin-top:15px;">
+    <center><h4 class="lead"><strong>Our Completed Projects</strong> </h4></center>
+
+</div>
+
+
+<div id="anas" class="container-fluid mr-lg-5" style="border:thick ;background-color:darkmagenta;width:1200px;">
+    <div class="row">
+        @foreach (var adv in topAdvs)
+        {
+            <div class="advsum col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 d-none d-sm-block">
+
+                <div class="card mb-2" style=" margin:20px auto; background-color:antiquewhite">
+                    @if (adv.Images.Count > 0)
+                    {
+                        <img src="data:image/jpg;base64,@adv.Images.First()" class="card-img card-img-top" alt="adv" />
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@adv.Name</h5>
+                        <div style="background-color:aliceblue"></div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-6">
+                            <a asp-action="Details" asp-controller="Project" asp-route-id="@adv.Id" class="lnk-advdetails btn btn-lg" title="@adv.Name">  <i class="fa fa-info-circle fa-2x"></i>  <h6>Product Details</h6>  </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(".lnk-advdetails").click(function (event) {
+            event.preventDefault();
+            var url = $(this).attr("href");
+            var title = $(this).attr("title");
+            $.ajax(
+                {
+                    url: url
+                }
+            ).done(function (advdetails) {
+                //show details adv modal dialog
+                $("#advdialog-title").text(title);
+                $("#advdialog-body").html(advdetails);
+                $("#advdialog").modal();
+            });
+        });
+
+        $("body").on("click", "#addToCart", function (event) {
+            event.preventDefault();
+            var url = $(this).attr("href");
+            var id = $(this).attr("data-Id");
+            $.ajax({
+                url: '/cart/AddItemInCart/' + id,
+                type: 'get',
+                success: function (response) {
+                    var html = '<h4>' + response.count + '</h4>';
+                    //$("#cartCountAdd").append(html);
+                    console.log(html);
+                    $("#mycountADDEDEDE").html(html);
+                }, error: function () {
+
+                }
+            });
+        });
+    </script>
+}
