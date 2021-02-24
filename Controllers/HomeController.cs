@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Regbhas.Models;
+using Regbhas.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,12 +19,25 @@ namespace Regbhas.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
+        {
+            ViewData["TopAdvs"] = new ProjectHandler().GetProjects().ToModelsList();
+            return View();
+
+        }
+
+        public IActionResult Contact()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Gallery()
+        {
+            return View();
+        }
+
+        public IActionResult About()
         {
             return View();
         }

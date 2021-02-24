@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Regbhas.Models;
 using Regbhas.ViewModels;
 using System;
@@ -18,25 +19,32 @@ namespace Regbhas.Controllers
         }
 
         [HttpGet]
-        public IActionResult PostProduct()
+        public IActionResult PostProject()
         {
+            ProjectViewModel model = new ProjectViewModel();
+            List<SelectListItem> topCategories = new List<SelectListItem> { new SelectListItem { Text = "Select Category", Value = "0" } };
+            topCategories.AddRange(new ProjectHandler().GetTopCategories().ToSelectListItemList());
+            model.TopLevelCategories = topCategories;
 
-            return View();
+            return PartialView("~/views/Project/_PostProject.cshtml", model);
         }
 
         [HttpPost]
-        public IActionResult PostProduct(ProjectViewModel model)
+        public IActionResult PostProject(ProjectViewModel model)
         {
 
-
-
+            model.Category = new ProjectCategoryVM { Id = Convert.ToInt32(Request.Form["categories"]) };
+           
             Project entity = model.ToEntity();
             int counter = -1;
             foreach (var file in Request.Form.Files)
             {
                 if (!string.IsNullOrWhiteSpace(file.FileName))
                 {
+
                     ProjectImage imgModel = new ProjectImage { Rank = ++counter };
+                    imgModel.Caption = Request.Form["phcaption"];
+
                     int fileSize = (int)file.Length;
                     using (MemoryStream ms = new MemoryStream(fileSize))
                     {
@@ -52,11 +60,11 @@ namespace Regbhas.Controllers
         }
 
 
-        //public IActionResult Details(int id)
-        //{
-        //    ProductViewModel m = new ProductsHandler().GetProduct(id).ToModel();
-        //    return PartialView("~/Views/Products/_Details.cshtml", m);
-        //}
+        public IActionResult Details(int id)
+        {
+            ProjectViewModel m = new ProjectHandler().GetProject(id).ToModel();
+            return PartialView("~/Views/Project/_Details.cshtml", m);
+        }
 
     }
 }
