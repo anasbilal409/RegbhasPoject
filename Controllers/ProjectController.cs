@@ -37,14 +37,14 @@ namespace Regbhas.Controllers
            
             Project entity = model.ToEntity();
             int counter = -1;
+
+            string[] captionArray = Request.Form["phcaption"];
             foreach (var file in Request.Form.Files)
             {
                 if (!string.IsNullOrWhiteSpace(file.FileName))
                 {
-
                     ProjectImage imgModel = new ProjectImage { Rank = ++counter };
-                    imgModel.Caption = Request.Form["phcaption"];
-
+                    imgModel.Caption = captionArray[counter];
                     int fileSize = (int)file.Length;
                     using (MemoryStream ms = new MemoryStream(fileSize))
                     {
@@ -63,6 +63,8 @@ namespace Regbhas.Controllers
         public IActionResult Details(int id)
         {
             ProjectViewModel m = new ProjectHandler().GetProject(id).ToModel();
+           // List<ProjectImage> lists = new ProjectHandler().GetAfterPics();
+            //List<ProjectImage> list = new ProjectHandler().GetBeforePics();
             return PartialView("~/Views/Project/_Details.cshtml", m);
         }
 
