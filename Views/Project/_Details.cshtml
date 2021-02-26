@@ -2,59 +2,71 @@
 @model ProjectViewModel
 
 <section class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="lead" style="margin-bottom:15px;">
-                <h2 class="lead"> @Model.Name </h2>  
-            </div>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-5">
-            <div style="margin-bottom:15px">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-text">
-                            <div class="lead">Product Category: <strong>@Model.Category.Name</strong></div>
-                           
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-text">
-                        <label class="lead">Project Description</label>
-                        <div class="lead"> <strong>@Model.Pdetail</strong></div>
 
-                    </div>
-                </div>
-            </div>
-           
+            <div class="lead mt-3"> <strong>Product Category:</strong><br /> @Model.Category.Name</div>
+
+            <div class="lead mt-4"> <strong>Product Category:</strong><br /> @Model.Pdetail</div>
+
+
+
+
         </div>
         <div class="col-7">
-            <div class="row">
-                <div class="col-4">
-                    <img src="data:image/jpg;base64,@Model.Images[0]" alt="@Model.Name" class="w-100" />
+            <ul class="nav nav-tabs">
+                <li class="nav-item"> <a class="nav-link active" href="#after" data-toggle="tab">After Work</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#before" data-toggle="tab">Before Work</a></li>
+                
+            </ul>
+
+            <div class="tab-content" style="min-height:360px">
+                <div id="after" class="tab-pane active mytab-pane">
+                    <div class="row">
+                        @foreach (var img in Model.AfterImages)
+                        {
+                        
+                            <section class="portfoliodet pt-lg">
+                                <div class="section-intro wrapper pb-md">
+                                </div>
+                                <div class="portfoliodet__gallery clearfix">
+                                    <div class="portfoliodet__gallery--item">
+                                        <figure><img src="data:image/jpg;base64,@img" alt=""></figure>
+                                    </div>
+                                   
+                                </div>
+                            </section>
+                        }
+                    </div>
+
+
                 </div>
-               
-            </div>
-            <div style="margin-top:15px;">
-                <div class="row">
-                    @foreach (var img in Model.Images)
-                    {
-                        <div class="col-3"><img src="data:image/jpg;base64,@img" alt="@Model.Name" class="w-100" /></div>
-                    }
+                <div id="before" class="tab-pane mytab-pane">
+                    <div class="row">
+                        @foreach (var img in Model.BeforeImages)
+                        {
+                        <section class="portfoliodet pt-lg">
+                            <div class="section-intro wrapper pb-md">
+                            </div>
+                            <div class="portfoliodet__gallery clearfix">
+                                <div class="portfoliodet__gallery--item">
+                                    <figure><img src="data:image/jpg;base64,@img" alt=""></figure>
+                                </div>
+
+                            </div>
+                        </section>
+                        }
+                    </div>
+
                 </div>
+                
+
             </div>
         </div>
-
-    </div>
-   
-</section>
-
-
-
-
-
+    
+</div>
+  
+    
+       </section>

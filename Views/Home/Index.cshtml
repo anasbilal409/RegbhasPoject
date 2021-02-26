@@ -5,7 +5,7 @@
 }
 
 <div class="main">
-    <h1>Our Projects</h1>
+    <center><h2 class="section-heading pb-md mt-2">Our Projects</h2></center>
 
     <ul class="cards">
         @foreach (var adv in topAdvs)
@@ -13,9 +13,9 @@
             <li class="cards_item">
                 <div class="card">
                     <div class="card_image">
-                        @if (adv.Images.Count > 0)
+                        @if (adv.BeforeImages.Count > 0)
                         {
-                            <img src="data:image/jpg;base64,@adv.Images.First()" class="card-img card-img-top" alt="adv" />
+                            <img src="data:image/jpg;base64,@adv.BeforeImages.First()" class="card-img card-img-top" style="height:100%;width:100%" alt="adv" />
                         }
                     </div>
                     <div class="card-body">
@@ -25,10 +25,10 @@
                     <div class="card_content">
                         <h2 class="card_title">@adv.Name</h2>
                         <p class="card_text">@adv.Category.Name</p>
-                        
-                            <a asp-action="Details" asp-controller="Project" asp-route-id="@adv.Id" class="lnk-advdetails btn card_btn" title="@adv.Name">  <i class="fa fa-info-circle fa-2x"></i>  <h6>View Details</h6>  </a>
-                        
-                        
+
+                        <a asp-action="Details" asp-controller="Project" asp-route-id="@adv.Id" class="lnk-advdetails btn btn-outline-primary" title="@adv.Name">  <i class="fa fa-info-circle fa-2x"></i>  <h6>View Details</h6>  </a>
+
+
                     </div>
                 </div>
             </li>
@@ -39,37 +39,7 @@
 
 
 
-<div class="lead" style="margin-top:15px;">
-    <center><h4 class="lead"><strong>Our Completed Projects</strong> </h4></center>
 
-</div>
-
-
-<div id="anas" class="container-fluid mr-lg-5" style="border:thick ;background-color:darkmagenta;width:1200px;">
-    <div class="row">
-        @foreach (var adv in topAdvs)
-        {
-            <div class="advsum col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 d-none d-sm-block">
-
-                <div class="card mb-2" style=" margin:20px auto; background-color:antiquewhite">
-                    @if (adv.Images.Count > 0)
-                    {
-                        <img src="data:image/jpg;base64,@adv.Images.First()" class="card-img card-img-top" alt="adv" />
-                    }
-                    <div class="card-body">
-                        <h5 class="card-title">@adv.Name</h5>
-                        <div style="background-color:aliceblue"></div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-lg-6">
-                            <a asp-action="Details" asp-controller="Project" asp-route-id="@adv.Id" class="lnk-advdetails btn btn-lg" title="@adv.Name">  <i class="fa fa-info-circle fa-2x"></i>  <h6>Product Details</h6>  </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-</div>
 
 
 @section Scripts{

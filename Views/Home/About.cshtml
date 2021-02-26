@@ -1,47 +1,100 @@
-﻿
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<div class="about-section">
-    <div class="inner-container">
-        <h1>About Us</h1>
-        <p class="text">
-            Demo Description
-        </p>
-        <div class="skills">
-            <span>Interior Design</span>
-            <span>Lighting</span>
-            <span>Furniture</span>
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            <h2>About Regbhas</h2>
+            <h4>Regbhas Interior Design Inc. is a turnkey business interior design firm that has practical experience in inhabitant upgrades and bundled office furniture arrangements. We have demonstrated our capacity to make spaces that join the ergonomic, utilitarian, and tasteful segments that add to a gainful workplace.</h4>
+            <button class="btn btn-default btn-lg">Get in Touch</button>
+        </div>
+        <div class="col-sm-4">
+            <span class="ablogo"><i class="fa fa-signal"></i></span>
         </div>
     </div>
 </div>
 
-
-<div class="container">
-    <h1 class="heading">Meet Our Team</h1>
-
-    <div class="profiles">
-        <div class="profile">
-            <img src="~/Images/furniturefinal.jpg" class="profile-img">
-
-            <h3 class="user-name">Anas</h3>
-            <h5>Creative Director</h5>
-            <p>Demo Description</p>
+<div class="container-fluid abbg-grey">
+    <div class="row">
+        <div class="col-sm-4">
+            <span class="ablogo"><i class="fa fa-check"></i></span>
         </div>
-        <div class="profile">
-            <img src="~/Images/interiorfinal.png" class="profile-img">
+        <div class="col-sm-8">
+            <h2>Our Values</h2>
+            <h4><strong>MISSION:</strong>Our mission is to positively influence the lives of all customers with whom we have the pleasure of working, and leave a lasting impression on their minds and imagination. Our designs must inspire and elevate the hearts and minds of all those who lay eyes on it. Our long-term goals are always in line with our core values. Our mission is to always go one step further – to offer an exclusive customer service to our clients.</h4>
 
-            <h3 class="user-name">Anas</h3>
-            <h5>Managing Partner</h5>
-            <p>Demo Description</p>
-        </div>
-        <div class="profile">
-            <img src="/Images/lighting final.jpg" class="profile-img">
-
-            <h3 class="user-name">Anas</h3>
-            <h5>Project Manager</h5>
-            <p>Demo Description</p>
         </div>
     </div>
+</div>
+
+<div class="container-fluid text-center">
+    <h2>SERVICES</h2>
+    <h4>What we offer</h4>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+
+            <span class="logo-small"> <i class="fa fa-bed"></i></span>
+            <h4>Interior Designing</h4>
+
+        </div>
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-heart logo-small"> <i class="fa fa-warehouse"></i></span>
+            <h4>Exterior Designing</h4>
+
+        </div>
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-lock logo-small"> <i class="fa fa-home"></i></span>
+            <h4>Home Decoration</h4>
+
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-4">
+            <span class="logo-small"> <i class="fa fa-lightbulb"></i></span>
+            <h4>Lighting</h4>
+
+        </div>
+        <div class="col-sm-4">
+            <span class="logo-small"> <i class="fa fa-building"></i></span>
+            <h4>Commercial Designing</h4>
+
+        </div>
+        <div class="col-sm-4">
+            <span class=" logo-small"> <i class="fa fa-home"></i></span>
+            <h4 style="color:#303030;">Home Decor</h4>
+
+        </div>
+    </div>
+</div>
+
+<center><h2>What our customers say</h2></center>
+<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe, Vice President, Comment Box</span></h4>
+        </div>
+        <div class="item">
+            <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+        </div>
+        <div class="item">
+            <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
