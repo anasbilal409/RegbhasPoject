@@ -63,8 +63,7 @@ namespace Regbhas.Models
         public DbSet<Role> Roles { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<ProjectCategory> ProjectCategory { get; set; }
-        public DbSet<Imgtype> ImgTypes { get; set; }
-
+      
     }
 
 }

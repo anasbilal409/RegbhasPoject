@@ -64,7 +64,7 @@ namespace Regbhas.Models
                 Project found = (from adv in context.Project
                                         .Include(adv => adv.Images)
                                         .Include(adv => adv.Category)
-                                 where adv.Id == id
+                                 where adv.Id == id 
                                  select adv).FirstOrDefault();
                 return found;
             }
